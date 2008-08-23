@@ -1,0 +1,28 @@
+Revision history for Perl extension HTML::Timeline.
+
+1.03  Fri Aug 22 12:23:00 2008
+	- Add support for ~/.timelinerc, using Config::IniFiles
+	- Rename Changes.txt to CHANGES because search.cpan.org won't display Changes.txt
+	- Ensure spouse of root person is included when processing descendents and spouses
+	- Fix date-parsing via Gedcom::Date
+
+1.02  Mon Aug 18 13:50:00 2008
+	- Switch from Date::Manip as used by ged2xml.pl to Gedcom::Date.
+	  Backwards-incompatability, if any, with Date::Manip, is deemed to be a feature
+	- Add the -output_dir option. This requires Path::Class
+	- Add the -template_dir option. This requires HTML::Template
+	- Add the -template_name option
+	- Add the -timeline_height option
+	- Add the -url_for_xml option
+	- Add the -web_page option
+	- Rename timeline.html to timeline.tmpl
+	- Add user help to the bottom of the HTML output
+	- Report people with missing birth dates below the timeline
+	- Change default height of the HTML output to 500px
+	- Change the hard-coded date in timeline.tmpl to the earliest birth date
+
+1.01  Wed Aug 13 09:27:00 2008
+	- Oops. Left Local::Config in t/test.t
+
+1.00  Mon Aug 11 17:56:00 2008
+	- Original version
