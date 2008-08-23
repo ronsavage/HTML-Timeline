@@ -67,7 +67,7 @@ timeline.pl [options]
 	Options:
 	-ancestors
 	-everyone
-	-getcom_file a_file_name
+	-gedcom_file a_file_name
 	-help
 	-include_spouses
 	-output_dir a_dir_name
