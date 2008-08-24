@@ -21,4 +21,5 @@ Module::Build -> new
 	 HTML::Template   => 0,
 	 Path::Class      => 0,
  },
+ script_files    => ['bin/timeline.pl'],
 ) -> create_build_script();
