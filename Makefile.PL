@@ -20,6 +20,7 @@ WriteMakefile
 	 SUFFIX   => 'gz'
  },
  DISTNAME  => 'HTML-Timeline',
+ EXE_FILES => ['bin/timeline.pl'],
  NAME      => 'HTML::Timeline',
  PL_FILES  => {},
  PREREQ_PM =>
