@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Timeline.
 
+1.04  Fri Aug 29 14:44:00 2008
+	- Download Phil Durbin's patches from github
+	- Implement missing_as_table (see docs for details)
+
 1.03  Fri Aug 22 12:23:00 2008
 	- Add support for ~/.timelinerc, using Config::IniFiles
 	- Rename Changes.txt to CHANGES because search.cpan.org won't display Changes.txt

@@ -31,6 +31,7 @@ push @option, 'everyone';
 push @option, 'gedcom_file=s';
 push @option, 'help';
 push @option, 'include_spouses';
+push @option, 'missing_as_table';
 push @option, 'output_dir=s';
 push @option, 'root_person=s';
 push @option, 'template_dir=s';
@@ -70,6 +71,7 @@ timeline.pl [options]
 	-gedcom_file a_file_name
 	-help
 	-include_spouses
+	-missing_as_table
 	-output_dir a_dir_name
 	-root_person a_personal_name
 	-template_dir a_dir_name
@@ -125,6 +127,12 @@ Print help and exit.
 If this option is used, and descendents are processed, spouses are included.
 
 If this option is not used, spouses are ignored.
+
+=item -missing_as_table
+
+If this option is used, people with missing birthdates are listed under the timeline, in a table.
+
+If this option is not used, such people appear on the timeline, with today's date as their birthdate.
 
 =item -output_dir a_dir_name
 

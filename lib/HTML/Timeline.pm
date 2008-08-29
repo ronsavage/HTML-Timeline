@@ -23,6 +23,7 @@ format
 gedcom_file
 gedobj
 include_spouses
+missing_as_table
 output_dir
 root_person
 template_dir
@@ -58,7 +59,7 @@ our @EXPORT = qw(
 
 );
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 # -----------------------------------------------
 
@@ -78,7 +79,9 @@ sub clean_persons_name
 
 sub generate_xml_file
 {
-	my($self, $people) = @_;
+	my($self, $people)   = @_;
+	my($missing_message) = 'People excluded because of missing birth dates: ';
+	my($todays_date)     = 1900 + (localtime() )[5];
 
 	# Process each person.
 
@@ -192,6 +195,13 @@ sub generate_xml_file
 		}
 	}
 
+	if ( ($self -> missing_as_table() == 0) && ($#missing >= 0) )
+	{
+		my($missing) = join(', ', map{$$_{'name'} } @missing);
+
+		push @xml, qq|  <event title="Missing" start="$todays_date" end="$todays_date">$missing</event>|;
+	}
+
 	push @xml, '</data>';
 
 	# Write timeline.xml.
@@ -221,14 +231,22 @@ sub generate_xml_file
 		$output_file_name = "$url_for_xml/$output_file_name"; # No Path::Class here.
 	}
 
-	$template -> param(earliest_date   => $earliest_date);
-	$template -> param(timeline_height => $self -> timeline_height() );
-	$template -> param(xml_file_name   => $output_file_name);
+	$template -> param(earliest_date    => $earliest_date);
+	$template -> param(missing_as_table => $self -> missing_as_table() );
+	$template -> param(timeline_height  => $self -> timeline_height() );
+	$template -> param(xml_file_name    => $output_file_name);
 
-	if (@missing)
+	if ($#missing >= 0)
 	{
-		$template -> param(missing      => 'People excluded because of missing birth dates:');
-		$template -> param(missing_loop => [map{ { death_date => $$_{'death_date'}, name => $$_{'name'} } } @missing]);
+		if ($self -> missing_as_table() == 1)
+		{
+			$template -> param(missing      => $missing_message);
+			$template -> param(missing_loop => [map{ { death_date => $$_{'death_date'}, name => $$_{'name'} } } @missing]);
+		}
+		else
+		{
+			$template -> param(todays_date => $todays_date);
+		}
 	}
 
 	$output_file_name = $self -> web_page();
@@ -296,6 +314,7 @@ ancestors
 everyone
 gedcom_file
 include_spouses
+missing_as_table
 output_dir
 root_person
 template_dir
@@ -311,10 +330,11 @@ xml_file
 
 	$self -> ancestors(0);
 	$self -> everyone(0);
-	$self -> format('%-15s: %s'); # Not in the @options array!
+	$self -> format('%-16s: %s'); # Not in the @options array!
 	$self -> gedcom_file('bach.ged');
 	$self -> gedobj(''); # Not in the @options array!
 	$self -> include_spouses(0);
+	$self -> missing_as_table(0);
 	$self -> output_dir('');
 	$self -> root_person('Johann Sebastian Bach');
 	$self -> template_dir('.');
@@ -524,6 +544,12 @@ If this option is 1, and descendents are processed, spouses are included.
 If this option is 0, spouses are ignored.
 
 The default is 0.
+
+=item missing_as_table
+
+If this option is 1, people with missing birthdates are listed under the timeline, in a table.
+
+If this option is 0, such people appear on the timeline, with today's date as their birthdate.
 
 =item output_dir a_dir_name
 

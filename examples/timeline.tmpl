@@ -43,7 +43,7 @@ var resizeTimerID = null;
 <body onload="onLoad();" onresize="onResize();">
   <h1>Timeline</h1>
   <div id="my-timeline" style="height: <tmpl_var name=timeline_height>px; border: 1px solid #aaa"></div>
-  <tmpl_if name=missing>
+  <tmpl_if name=missing_as_table>
   <p>
 	<tmpl_var name=missing>
   </p>
@@ -55,6 +55,10 @@ var resizeTimerID = null;
 	  <tr><th><tmpl_var name=name></th><td><tmpl_var name=death_date></td>
 	</tmpl_loop>
   </table>
+  <tmpl_else>
+  <p>
+	People excluded because of missing birth dates have been given a birthdate of <tmpl_var name=todays_date>.
+  </p>
   </tmpl_if>
   <hr />
   <p>Note: You should see 2 timescales at the bottom of the timeline. You can click-and-drag
