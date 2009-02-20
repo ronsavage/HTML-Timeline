@@ -694,7 +694,7 @@ examples/timeline.xml is the output of this program, using the default options.
 
 =head1 Author
 
-C<HTML::Timeline> was written by Ron Savage in 2008. [ron@savage.net.au]
+C<HTML::Timeline> was written by Ron Savage I<E<lt>ron@savage.net.auE<gt>> in 2008.
 
 Home page: http://savage.net.au/index.html
 
