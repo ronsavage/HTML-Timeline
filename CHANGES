@@ -1,5 +1,8 @@
 Revision history for Perl extension HTML::Timeline.
 
+1.05  Fri Nov 13 13:20:00 2009
+	- Run dos2unix. This only affects examples/bach.ged.
+
 1.04  Fri Aug 29 14:44:00 2008
 	- Download Phil Durbin's patches from github
 	- Implement missing_as_table (see docs for details)
