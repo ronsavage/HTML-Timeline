@@ -1,0 +1,16 @@
+bin/timeline.pl
+Build.PL
+Changelog.ini
+CHANGES
+examples/bach.ged
+examples/bach.ged.index
+examples/bach.xml
+examples/ged2xml.pl
+examples/timeline.tmpl
+lib/HTML/.htlocal.conf
+lib/HTML/Timeline.pm
+Makefile.PL
+MANIFEST			This list of files
+README
+t/pod.t
+t/test.t
