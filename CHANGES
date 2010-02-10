@@ -1,5 +1,8 @@
 Revision history for Perl extension HTML::Timeline.
 
+1.06  Wed Feb 10 13:52:47 2010
+	- Add META.yml. Update MANIFEST.SKIP. Add MANIFEST and MYMETA.yml.
+
 1.05  Fri Nov 13 13:20:00 2009
 	- Run dos2unix. This only affects examples/bach.ged.
 
