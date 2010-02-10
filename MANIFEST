@@ -14,3 +14,4 @@ MANIFEST			This list of files
 README
 t/pod.t
 t/test.t
+META.yml
