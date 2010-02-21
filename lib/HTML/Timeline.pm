@@ -646,28 +646,6 @@ Do everything.
 
 See C<examples/timeline.pl> for an example of how to call C<run()>.
 
-=head1 Required Modules
-
-Some of these are only used by C<bin/timeline.pl>.
-
-=over 4
-
-=item accessors
-
-=item Carp
-
-=item Gedcom
-
-=item Gedcom::Date
-
-=item Getopt::Long
-
-=item Path::Class
-
-=item Pod::Usage
-
-=back
-
 =head1 See also
 
 The C<Gedcom> module.
