@@ -17,7 +17,7 @@ name: HTML-Timeline
 provides:
   HTML::Timeline:
     file: lib/HTML/Timeline.pm
-    version: 1.05
+    version: 1.07
 requires:
   Carp: 0
   Config::IniFiles: 0
@@ -28,4 +28,4 @@ requires:
   accessors: 0
 resources:
   license: http://opensource.org/licenses/artistic-license.php
-version: 1.05
+version: 1.07
