@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Timeline.
 
+1.08  Tue Feb 15 17:00:00 2011
+	- Replace /usr/bin/perl with /usr/bin/env perl.
+	- Replace common::sense with use strict and use warnings, to get uninit var warnings.
+
 1.07  Sun Feb 21 12:55:20 2010
 	- Remove text 'All rights reserved' (for Debian licensing).
 	- Remove POD heads 'Required Modules' and 'Changes'.

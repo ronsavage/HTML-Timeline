@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
 # Note: this version of the script is based on
 # commit 8556bb4019b35a285ef7045a33431759b054ee60
@@ -18,7 +18,7 @@ ged2xml.pl [--force] [--xml] [-d5] gedcom_file
    -o, --output      XML output file
    -f, --force       Don't prompt to confirm overwriting XML output file
    -d1, -d5          Set the debug level
-   --man             Print the manual page 
+   --man             Print the manual page
    -x, --xml         Print the xml to STDOUT
 
 =head1 DESCRIPTION
@@ -226,7 +226,7 @@ for my $person (@people) {
     my $valid_death_date = _parse_date($death_date);
     # begin hack for james riley durbin
     # his death date (FEB 1978) is parseable by ParseDate
-    # but not similie timeline.  so we'll force it to be 
+    # but not similie timeline.  so we'll force it to be
     # invalid so only the year is extracted.
     if ($name eq "James Riley Durbin") {
         warn "WARNING: James Riley Durbin death date hack";
