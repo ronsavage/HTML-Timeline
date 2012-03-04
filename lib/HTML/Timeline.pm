@@ -477,7 +477,7 @@ sub run
 
 =head1 NAME
 
-C<HTML::Timeline> - Convert a Gedcom file into a Timeline file
+HTML::Timeline - Convert a Gedcom file into a Timeline file
 
 =head1 Synopsis
 
