@@ -1,6 +1,6 @@
 Revision history for Perl extension HTML::Timeline.
 
-1.08  Tue Feb 15 17:00:00 2011
+1.08  Unreleased
 	- Replace /usr/bin/perl with /usr/bin/env perl.
 	- Replace common::sense with use strict and use warnings, to get uninit var warnings.
 
