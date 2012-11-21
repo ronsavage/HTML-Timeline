@@ -1,0 +1,53 @@
+{
+   "abstract" : "Convert a Gedcom file into a Timeline file",
+   "author" : [
+      "Ron Savage <ron@savage.net.au>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120630",
+   "license" : [
+      "artistic_1"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "HTML-Timeline",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0",
+            "Test::Pod" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : "0",
+            "Config::IniFiles" : "0",
+            "Gedcom" : "0",
+            "Gedcom::Date" : "0",
+            "HTML::Template" : "0",
+            "Path::Class" : "0",
+            "accessors" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "HTML::Timeline" : {
+         "file" : "lib/HTML/Timeline.pm",
+         "version" : "1.07"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://www.perlfoundation.org/artistic_license_1_0"
+      ]
+   },
+   "version" : "1.07"
+}
