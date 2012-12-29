@@ -3,7 +3,7 @@ use Module::Build;
 Module::Build -> new
 (
  module_name    => 'HTML::Timeline',
- license        => 'perl_5',
+ license        => 'artistic_2',
  dist_abstract  => 'Convert a Gedcom file into a Timeline file',
  dist_author    => 'Ron Savage <ron@savage.net.au>',
  build_requires =>

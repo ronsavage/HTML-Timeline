@@ -22,7 +22,7 @@ WriteMakefile
  DISTNAME  => 'HTML-Timeline',
  EXE_FILES => ['bin/timeline.pl'],
  NAME      => 'HTML::Timeline',
-	LICENSE   => 'perl_5',
+	LICENSE   => 'artistic_2',
  PL_FILES  => {},
  PREREQ_PM =>
  {
