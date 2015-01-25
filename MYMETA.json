@@ -6,7 +6,7 @@
    "dynamic_config" : 0,
    "generated_by" : "Module::Build version 0.421",
    "license" : [
-      "artistic_1"
+      "artistic_2"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -39,14 +39,17 @@
    "provides" : {
       "HTML::Timeline" : {
          "file" : "lib/HTML/Timeline.pm",
-         "version" : "1.07"
+         "version" : "1.08"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "license" : [
-         "http://www.perlfoundation.org/artistic_license_1_0"
-      ]
+         "http://www.perlfoundation.org/artistic_license_2_0"
+      ],
+      "repository" : {
+         "url" : "https://github.com/ronsavage/HTML-Timeline"
+      }
    },
-   "version" : "1.07"
+   "version" : "1.08"
 }
