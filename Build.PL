@@ -3,6 +3,8 @@ use warnings;
 
 use Module::Build;
 
+# -----------------------------------------------
+
 my $class = Module::Build->subclass(code => <<'EOF');
 
 sub ACTION_authortest
@@ -37,13 +39,6 @@ $class -> new
 	{
 		'Module::Build' => 0.3800,
 	},
-	meta_merge =>
-	{
-		resources =>
-		{
-			repository => 'https://github.com/ronsavage/HTML-Timeline',
-		},
-	},
 	requires =>
 	{
 		'accessors'        => 0,
@@ -53,6 +48,12 @@ $class -> new
 		'Gedcom::Date'     => 0,
 		'HTML::Template'   => 0,
 		'Path::Class'      => 0,
+	},
+	resources =>
+	{
+		bugtracker => 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
+		license    => 'http://opensource.org/licenses/Artistic-2.0',
+		repository => 'https://github.com/ronsavage/HTML-Timeline',
 	},
 	script_files => ['bin/timeline.pl'],
 ) -> create_build_script();
