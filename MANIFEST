@@ -1,7 +1,7 @@
 bin/timeline.pl
 Build.PL
 Changelog.ini
-CHANGES
+Changes
 examples/bach.ged
 examples/bach.ged.index
 examples/bach.xml
@@ -13,5 +13,5 @@ MANIFEST			This list of files
 META.json
 META.yml
 README
-t/pod.t
 t/test.t
+xt/author/pod.t
