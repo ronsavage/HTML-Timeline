@@ -1,8 +1,14 @@
 Revision history for Perl extension HTML::Timeline.
 
-1.08  Unreleased
+1.08  Sun Jan 25 14:07:00 2014
 	- Replace /usr/bin/perl with /usr/bin/env perl.
 	- Replace common::sense with use strict and use warnings, to get uninit var warnings.
+	- Rename CHANGES to Changes, as per CPAN::Changes::Spec.
+	- Rewrite bareword filehandles (INX) to use a variable (my $fh).
+	- Rename github repo from html--timeline to HTML-Timeline - My new standard.
+		Update Build.PL and Makefile.PL to match.
+	- Reformat the docs, and this file, slighty, to be <= 100 chars per line - My new standard.
+	- Move t/pod.t to xt/author/.
 
 1.07  Sun Feb 21 12:55:20 2010
 	- Remove text 'All rights reserved' (for Debian licensing).

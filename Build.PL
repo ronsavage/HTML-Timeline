@@ -1,29 +1,58 @@
+use strict;
+use warnings;
+
 use Module::Build;
 
-Module::Build -> new
+my $class = Module::Build->subclass(code => <<'EOF');
+
+sub ACTION_authortest
+{
+	my($self) = @_;
+
+	$self->depends_on('build');
+	$self->depends_on('manifest');
+	$self->depends_on('distmeta');
+
+	$self->test_files( qw< t xt/author > );
+	$self->recursive_test_files(1);
+
+	$self->depends_on('test');
+
+	return;
+}
+EOF
+
+$class -> new
 (
- module_name    => 'HTML::Timeline',
- license        => 'artistic_2',
- dist_abstract  => 'Convert a Gedcom file into a Timeline file',
- dist_author    => 'Ron Savage <ron@savage.net.au>',
- build_requires =>
- {
-	 Test::More=> 0,
-#	 Test::Pod  => 1.45, # Make it optional. See t/pod.t
- },
- configure_requires =>
- {
- 	 Module::Build => 0.3800,
- },
- requires =>
- {
-	 accessors        => 0,
-	 Carp             => 0,
-	 Config::IniFiles => 0,
-	 Gedcom           => 0,
-	 Gedcom::Date     => 0,
-	 HTML::Template   => 0,
-	 Path::Class      => 0,
- },
- script_files => ['bin/timeline.pl'],
+	module_name    => 'HTML::Timeline',
+	license        => 'artistic_2',
+	dist_abstract  => 'Convert a Gedcom file into a Timeline file',
+	dist_author    => 'Ron Savage <ron@savage.net.au>',
+	build_requires =>
+	{
+		'Test::More' => 0,
+#		'Test::Pod'  => 1.45, # Make it optional. See t/pod.t
+	},
+	configure_requires =>
+	{
+		'Module::Build' => 0.3800,
+	},
+	meta_merge =>
+	{
+		resources =>
+		{
+			repository => 'https://github.com/ronsavage/HTML-Timeline',
+		},
+	},
+	requires =>
+	{
+		'accessors'        => 0,
+		'Carp'             => 0,
+		'Config::IniFiles' => 0,
+		'Gedcom'           => 0,
+		'Gedcom::Date'     => 0,
+		'HTML::Template'   => 0,
+		'Path::Class'      => 0,
+	},
+	script_files => ['bin/timeline.pl'],
 ) -> create_build_script();

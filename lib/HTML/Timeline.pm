@@ -59,7 +59,7 @@ our @EXPORT = qw(
 
 );
 
-our $VERSION = '1.07';
+our $VERSION = '1.08';
 
 # -----------------------------------------------
 
@@ -214,9 +214,9 @@ sub generate_xml_file
 		$output_file_name = file($output_dir, $output_file_name);
 	}
 
-	open(OUT, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
-	print OUT join("\n", @xml), "\n";
-	close OUT;
+	open(my $fh, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
+	print $fh join("\n", @xml), "\n";
+	close $fh;
 
 	$self -> log(sprintf($self -> format(), 'Created', $output_file_name) );
 
@@ -256,9 +256,9 @@ sub generate_xml_file
 		$output_file_name = file($output_dir, $output_file_name);
 	}
 
-	open(OUT, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
-	print OUT $template -> output();
-	close OUT;
+	open(my $fh, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
+	print $fh $template -> output();
+	close $fh;
 
 	$self -> log(sprintf($self -> format(), 'Created', $output_file_name) );
 
@@ -500,7 +500,7 @@ help on unpacking and installing.
 
 new(...) returns an object of type C<HTML::Timeline>.
 
-This is the class's contructor.
+This is the class contructor.
 
 Usage: C<< HTML::Timeline -> new() >>.
 
@@ -549,7 +549,7 @@ The default is 0.
 
 If this option is 1, people with missing birthdates are listed under the timeline, in a table.
 
-If this option is 0, such people appear on the timeline, with today's date as their birthdate.
+If this option is 0, such people appear on the timeline, with a date (today) as their birthdate.
 
 =item output_dir a_dir_name
 
@@ -575,7 +575,8 @@ If this option is not used, 'timeline.tmpl' will be used.
 
 =item url_for_xml a_url
 
-If this option is used, it becomes the prefix of the name of the output XML file written into timeline.html.
+If this option is used, it becomes the prefix of the name of the output XML file written into
+timeline.html.
 
 If this option is not used, no prefix is used.
 
@@ -669,6 +670,10 @@ Philip also supplied the files examples/bach.* and examples/timeline.html.
 Ron Savage wrote bin/timeline.pl.
 
 examples/timeline.xml is the output of this program, using the default options.
+
+=head1 Repository
+
+L<https://github.com/ronsavage/HTML-Timeline>
 
 =head1 Author
 
