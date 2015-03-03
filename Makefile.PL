@@ -31,13 +31,13 @@ my(%params) =
 	PL_FILES  => {},
 	PREREQ_PM =>
 	{
-		accessors        => 0,
-		Carp             => 0,
-		Config::IniFiles => 0,
-		Gedcom           => 0,
-		Gedcom::Date     => 0,
-		HTML::Template   => 0,
-		Path::Class      => 0,
+		'accessors' => 0,
+		'Carp' => 0,
+		'Config::IniFiles' => 0,
+		'Gedcom' => 0,
+		'Gedcom::Date' => 0,
+		'HTML::Template' => 0,
+		'Path::Class' => 0,
 	},
 	VERSION_FROM => 'lib/HTML/Timeline.pm',
 );
@@ -53,17 +53,17 @@ if ($ExtUtils::MakeMaker::VERSION ge '6.46')
 	{
 		'meta-spec' =>
 		{
-			version => 2,
+		'version' => 2,
 		},
 		resources   =>
 		{
-			bugtracker => 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
-			license    => 'http://opensource.org/licenses/Artistic-2.0',
+		'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
+		'license' => 'http://opensource.org/licenses/Artistic-2.0',
 			repository =>
 			{
-				type => 'git',
-				url  => 'https://github.com/ronsavage/HTML-Timeline.git',
-				web  => 'https://github.com/ronsavage/HTML-Timeline',
+		'type' => 'git',
+		'url' => 'https://github.com/ronsavage/HTML-Timeline.git',
+		'web' => 'https://github.com/ronsavage/HTML-Timeline',
 			},
 		},
 	};
