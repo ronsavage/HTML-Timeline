@@ -256,7 +256,7 @@ sub generate_xml_file
 		$output_file_name = file($output_dir, $output_file_name);
 	}
 
-	open(my $fh, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
+	open($fh, '>', $output_file_name) || Carp::croak "Can't open(> $output_file_name): $!";
 	print $fh $template -> output();
 	close $fh;
 
