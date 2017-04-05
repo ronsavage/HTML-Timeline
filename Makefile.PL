@@ -31,13 +31,13 @@ my(%params) =
 	PL_FILES  => {},
 	PREREQ_PM =>
 	{
-		accessors        => 0,
-		Carp             => 0,
-		Config::IniFiles => 0,
-		Gedcom           => 0,
-		Gedcom::Date     => 0,
-		HTML::Template   => 0,
-		Path::Class      => 0,
+		'accessors'        => 0,
+		'Carp'             => 0,
+		'Config::IniFiles' => 0,
+		'Gedcom'           => 0,
+		'Gedcom::Date'     => 0,
+		'HTML::Template'   => 0,
+		'Path::Class'      => 0,
 	},
 	VERSION_FROM => 'lib/HTML/Timeline.pm',
 );

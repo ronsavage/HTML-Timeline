@@ -30,6 +30,7 @@ template_dir
 template_name
 timeline_height
 url_for_xml
+validate
 verbose
 web_page
 xml_file
@@ -256,7 +257,7 @@ sub generate_xml_file
 		$output_file_name = file($output_dir, $output_file_name);
 	}
 
-	open(my $fh, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
+	open($fh, '>', $output_file_name) || Carp::croak "Can't open(> $output_file_name): $!";
 	print $fh $template -> output();
 	close $fh;
 
@@ -321,6 +322,7 @@ template_dir
 template_name
 timeline_height
 url_for_xml
+validate
 verbose
 web_page
 xml_file
@@ -342,6 +344,7 @@ xml_file
 	$self -> timeline_height(500);
 	$self -> url_for_xml('');
 	$self -> verbose(0);
+	$self -> validate(1);
 	$self -> web_page('timeline.html');
 	$self -> xml_file('timeline.xml');
 
@@ -403,7 +406,7 @@ xml_file
 	 )
 	);
 
-	if (! $self -> gedobj() -> validate() )
+	if($arg{'options'}{'validate'} && (! $self -> gedobj() -> validate() ))
 	{
 		Carp::croak 'Cannot validate file: ' . $self -> gedcom_file();
 	}
@@ -430,7 +433,8 @@ sub run
 	$self -> log('Processing:');
 
 	my($root_person) = $self -> gedobj() -> get_individual($self -> root_person() );
-	my($name)        = $self -> clean_persons_name($root_person -> name() );
+	my($name) = $self -> clean_persons_name($root_person -> name() );
+
 
 	my(@people);
 
@@ -572,6 +576,12 @@ If this option is not used, the current directory will be used.
 If this option is used, HTML::Template will look for a file of this name.
 
 If this option is not used, 'timeline.tmpl' will be used.
+
+=item validate
+
+If this option is used, HTML::Template will valide the Gedcom file.
+
+The default value is 1.
 
 =item url_for_xml a_url
 
