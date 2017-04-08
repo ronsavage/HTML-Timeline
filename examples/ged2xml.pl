@@ -16,7 +16,7 @@ ged2xml.pl [--force] [--xml] [-d5] gedcom_file
    -re, --rel        Relationship type: ancestor by default or descendant
    -r, --root        Root person for the tree
    -o, --output      XML output file
-   -f, --force       Don't prompt to confirm overwriting XML output file
+   -f, --force       Do not prompt to confirm overwriting XML output file
    -d1, -d5          Set the debug level
    --man             Print the manual page
    -x, --xml         Print the xml to STDOUT
@@ -226,7 +226,7 @@ for my $person (@people) {
     my $valid_death_date = _parse_date($death_date);
     # begin hack for james riley durbin
     # his death date (FEB 1978) is parseable by ParseDate
-    # but not similie timeline.  so we'll force it to be
+    # but not by Similie Timeline.  so we'll force it to be
     # invalid so only the year is extracted.
     if ($name eq "James Riley Durbin") {
         warn "WARNING: James Riley Durbin death date hack";
