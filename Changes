@@ -2,6 +2,7 @@ Revision history for Perl extension HTML::Timeline.
 
 1.10  2017-04-16T18:01:00
 	- Replace 'perl' with $^X in t/test.t. Reported by Slaven Rezic. See RT#121181.
+	- Update pre-reqs in Makefile.PL.
 
 1.09  2017-04-16T11:16:00
 	- Adopt new repo structure. For details, see
