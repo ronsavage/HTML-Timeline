@@ -36,7 +36,7 @@ use HTML::Template;
 
 use Path::Class;
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 # -----------------------------------------------
 
