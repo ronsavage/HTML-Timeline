@@ -38,7 +38,7 @@ my(%params) =
 		'HTML::Template'	=> 0,
 		'Path::Class'		=> 0,
 	},
-	TESTING_REQUIRES =>
+	TEST_REQUIRES =>
 	{
 	},
 	VERSION_FROM => 'lib/HTML/Timeline.pm',
