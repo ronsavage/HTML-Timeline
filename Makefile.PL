@@ -27,24 +27,26 @@ my(%params) =
 	DISTNAME  => 'HTML-Timeline',
 	EXE_FILES => ['bin/timeline.pl'],
 	NAME      => 'HTML::Timeline',
-	LICENSE   => 'artistic_2',
 	PL_FILES  => {},
 	PREREQ_PM =>
 	{
-		'accessors' => 0,
-		'Carp' => 0,
-		'Config::IniFiles' => 0,
-		'Gedcom' => 0,
-		'Gedcom::Date' => 0,
-		'HTML::Template' => 0,
-		'Path::Class' => 0,
+		'accessors'			=> 0,
+		'Carp'				=> 0,
+		'Config::IniFiles'	=> 0,
+		'Gedcom'			=> 0,
+		'Gedcom::Date'		=> 0,
+		'HTML::Template'	=> 0,
+		'Path::Class'		=> 0,
+	},
+	TESTING_REQUIRES =>
+	{
 	},
 	VERSION_FROM => 'lib/HTML/Timeline.pm',
 );
 
 if ( ($ExtUtils::MakeMaker::VERSION =~ /^\d\.\d\d$/) && ($ExtUtils::MakeMaker::VERSION > 6.30) )
 {
-	$params{LICENSE} = 'artistic_2';
+	$params{LICENSE} = 'perl';
 }
 
 if ($ExtUtils::MakeMaker::VERSION ge '6.46')
@@ -53,17 +55,17 @@ if ($ExtUtils::MakeMaker::VERSION ge '6.46')
 	{
 		'meta-spec' =>
 		{
-		'version' => 2,
+			version => 2,
 		},
-		resources   =>
+		resources =>
 		{
-		'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
-		'license' => 'http://opensource.org/licenses/Artistic-2.0',
-			repository =>
+			bugtracker	=> 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
+			license		=> 'http://opensource.org/licenses/Artistic-2.0',
+			repository	=>
 			{
-		'type' => 'git',
-		'url' => 'https://github.com/ronsavage/HTML-Timeline.git',
-		'web' => 'https://github.com/ronsavage/HTML-Timeline',
+				type	=> 'git',
+				url		=> 'https://github.com/ronsavage/HTML-Timeline.git',
+				web		=> 'https://github.com/ronsavage/HTML-Timeline',
 			},
 		},
 	};

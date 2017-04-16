@@ -1,17 +1,9 @@
 package HTML::Timeline;
 
-# Author:
-#	Ron Savage <ron@savage.net.au>
-#
-# Note:
-#	\t = 4 spaces || die.
-
 use strict;
 use warnings;
 
 require 5.005_62;
-
-require Exporter;
 
 # Warning: This list must include format and gedobj, unlike the list in sub new(),
 # since those 2 special cases are attributes which are not available to the caller.
@@ -30,36 +22,21 @@ template_dir
 template_name
 timeline_height
 url_for_xml
+validate_gedcom_file
 verbose
 web_page
 xml_file
 /;
 use Carp;
+
 use Gedcom;
 use Gedcom::Date;
+
 use HTML::Template;
+
 use Path::Class;
 
-our @ISA = qw(Exporter);
-
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration	use HTML::Timeline ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-
-) ] );
-
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw(
-
-);
-
-our $VERSION = '2.07';
+our $VERSION = '1.09';
 
 # -----------------------------------------------
 
@@ -81,7 +58,7 @@ sub generate_xml_file
 {
 	my($self, $people)   = @_;
 	my($missing_message) = 'People excluded because of missing birth dates: ';
-	my($todays_date)     = 1900 + (localtime() )[5];
+	my($todays_date)     = 1900 + (localtime)[5];
 
 	# Process each person.
 
@@ -103,7 +80,7 @@ sub generate_xml_file
 
 		if ($seen{$name})
 		{
-			$self -> log(sprintf($self -> format(), 'Note', "$name appears twice in the input file") );
+			$self -> log(sprintf($self -> format, 'Note', "$name appears twice in the input file") );
 
 			next;
 		}
@@ -195,7 +172,7 @@ sub generate_xml_file
 		}
 	}
 
-	if ( ($self -> missing_as_table() == 0) && ($#missing >= 0) )
+	if ( ($self -> missing_as_table == 0) && ($#missing >= 0) )
 	{
 		my($missing) = join(', ', map{$$_{'name'} } @missing);
 
@@ -206,8 +183,8 @@ sub generate_xml_file
 
 	# Write timeline.xml.
 
-	my($output_dir)       = $self -> output_dir();
-	my($output_file_name) = $self -> xml_file();
+	my($output_dir)       = $self -> output_dir;
+	my($output_file_name) = $self -> xml_file;
 
 	if ($output_dir)
 	{
@@ -218,13 +195,13 @@ sub generate_xml_file
 	print $fh join("\n", @xml), "\n";
 	close $fh;
 
-	$self -> log(sprintf($self -> format(), 'Created', $output_file_name) );
+	$self -> log(sprintf($self -> format, 'Created', $output_file_name) );
 
 	# Write timeline.html.
 
-	my($template)     = HTML::Template -> new(filename => $self -> template_name(), path => $self -> template_dir() );
-	my($url_for_xml)  = $self -> url_for_xml();
-	$output_file_name = $self -> xml_file();
+	my($template)     = HTML::Template -> new(filename => $self -> template_name, path => $self -> template_dir );
+	my($url_for_xml)  = $self -> url_for_xml;
+	$output_file_name = $self -> xml_file;
 
 	if ($url_for_xml)
 	{
@@ -232,13 +209,13 @@ sub generate_xml_file
 	}
 
 	$template -> param(earliest_date    => $earliest_date);
-	$template -> param(missing_as_table => $self -> missing_as_table() );
-	$template -> param(timeline_height  => $self -> timeline_height() );
+	$template -> param(missing_as_table => $self -> missing_as_table);
+	$template -> param(timeline_height  => $self -> timeline_height);
 	$template -> param(xml_file_name    => $output_file_name);
 
 	if ($#missing >= 0)
 	{
-		if ($self -> missing_as_table() == 1)
+		if ($self -> missing_as_table == 1)
 		{
 			$template -> param(missing      => $missing_message);
 			$template -> param(missing_loop => [map{ { death_date => $$_{'death_date'}, name => $$_{'name'} } } @missing]);
@@ -249,7 +226,7 @@ sub generate_xml_file
 		}
 	}
 
-	$output_file_name = $self -> web_page();
+	$output_file_name = $self -> web_page;
 
 	if ($output_dir)
 	{
@@ -257,10 +234,10 @@ sub generate_xml_file
 	}
 
 	open($fh, "> $output_file_name") || Carp::croak "Can't open(> $output_file_name): $!";
-	print $fh $template -> output();
+	print $fh $template -> output;
 	close $fh;
 
-	$self -> log(sprintf($self -> format(), 'Created', $output_file_name) );
+	$self -> log(sprintf($self -> format, 'Created', $output_file_name) );
 
 } # End of generate_xml_file.
 
@@ -276,7 +253,7 @@ sub get_spouses
 
 	for my $person (@$people)
 	{
-		$spouse = $person -> spouse();
+		$spouse = $person -> spouse;
 
 		if ($spouse)
 		{
@@ -294,7 +271,7 @@ sub log
 {
 	my($self, $message) = @_;
 
-	if ($self -> verbose() )
+	if ($self -> verbose)
 	{
 		print STDERR "$message\n";
 	}
@@ -321,6 +298,7 @@ template_dir
 template_name
 timeline_height
 url_for_xml
+validate_gedcom_file
 verbose
 web_page
 xml_file
@@ -341,6 +319,7 @@ xml_file
 	$self -> template_name('timeline.tmpl');
 	$self -> timeline_height(500);
 	$self -> url_for_xml('');
+	$self -> validate_gedcom_file(0);
 	$self -> verbose(0);
 	$self -> web_page('timeline.html');
 	$self -> xml_file('timeline.xml');
@@ -387,9 +366,9 @@ xml_file
 		}
 	}
 
-	if (! -f $self -> gedcom_file() )
+	if (! -f $self -> gedcom_file)
 	{
-		Carp::croak 'Cannot find file: ' . $self -> gedcom_file();
+		Carp::croak 'Cannot find file: ' . $self -> gedcom_file;
 	}
 
 	$self -> gedobj
@@ -397,22 +376,22 @@ xml_file
 	 Gedcom -> new
 	 (
 	  callback        => undef,
-	  gedcom_file     => $self -> gedcom_file(),
+	  gedcom_file     => $self -> gedcom_file,
 	  grammar_version => '5.5',
 	  read_only       => 1,
 	 )
 	);
 
-	if (! $self -> gedobj() -> validate() )
+	if ( ($self->validate_gedcom_file == 1) && ! $self -> gedobj -> validate)
 	{
-		Carp::croak 'Cannot validate file: ' . $self -> gedcom_file();
+		Carp::croak 'Cannot validate file: ' . $self -> gedcom_file;
 	}
 
 	$self -> log('Parameters:');
 
 	for $attr_name (@options)
 	{
-		$self -> log(sprintf($self -> format(), $attr_name, $self -> $attr_name() ) );
+		$self -> log(sprintf($self -> format, $attr_name, $self -> $attr_name) );
 	}
 
 	$self -> log('-' x 50);
@@ -429,27 +408,27 @@ sub run
 
 	$self -> log('Processing:');
 
-	my($root_person) = $self -> gedobj() -> get_individual($self -> root_person() );
-	my($name)        = $self -> clean_persons_name($root_person -> name() );
+	my($root_person) = $self -> gedobj -> get_individual($self -> root_person);
+	my($name)        = $self -> clean_persons_name($root_person -> name);
 
 	my(@people);
 
-	if ($self -> everyone() == 1)
+	if ($self -> everyone == 1)
 	{
-		@people = $self -> gedobj() -> individuals();
+		@people = $self -> gedobj -> individuals;
 	}
 	else
 	{
-		my($method) = $self -> ancestors() == 1 ? 'ancestors' : 'descendents';
-		@people     = $root_person -> $method();
+		my($method) = $self -> ancestors == 1 ? 'ancestors' : 'descendents';
+		@people     = $root_person -> $method;
 
-		$self -> log(sprintf($self -> format(), 'Relationship', $method) );
+		$self -> log(sprintf($self -> format, 'Relationship', $method) );
 
-		if ($self -> ancestors() == 0)
+		if ($self -> ancestors == 0)
 		{
 			# If descendents are wanted, check for spouses.
 
-			if ($self -> include_spouses() == 1)
+			if ($self -> include_spouses == 1)
 			{
 				push @people, @{$self -> get_spouses([$root_person, @people])};
 			}
@@ -458,7 +437,7 @@ sub run
 		{
 			# If ancestors are wanted, check for siblings.
 
-			push @people, $root_person -> siblings();
+			push @people, $root_person -> siblings;
 		}
 
 		unshift @people, $root_person;
@@ -481,7 +460,7 @@ HTML::Timeline - Convert a Gedcom file into a Timeline file
 
 =head1 Synopsis
 
-	shell> bin/timeline.pl -h
+	shell> perl bin/timeline.pl -h
 
 =head1 Description
 
@@ -506,7 +485,7 @@ Usage: C<< HTML::Timeline -> new() >>.
 
 This method takes a hashref of options.
 
-Call C<new()> as C<< new({option_1 => value_1, option_2 => value_2, ...}) >>.
+Call C<new()> as C<< new(option_1 => value_1, option_2 => value_2, ...) >>.
 
 See the next section for a discussion of the resource file $HOME/.timelinerc,
 which can be used to override the default values for options.
@@ -515,78 +494,92 @@ Available options:
 
 =over 4
 
-=item ancestors
+=item ancestors $Boolean
 
 If this option is 1, the ancestors of the root_person (see below) are processed.
 
 If this option is 0, their descendents are processed.
 
-The default is 0.
+Default: 0.
 
-=item everyone
+=item everyone $Boolean
 
 If this option is 1, everyone is processed, and the root_person (see below) is ignored.
 
 If this option is 0, the root_person is processed.
 
-The default is 0.
+Default: 0.
 
-=item gedcom_file
+=item gedcom_file $a_file_name
 
 This takes the name of your input Gedcom file.
 
-The default is bach.ged.
+Default: 'bach.ged'.
 
-=item include_spouses
+=item include_spouses $Boolean
 
 If this option is 1, and descendents are processed, spouses are included.
 
 If this option is 0, spouses are ignored.
 
-The default is 0.
+Default: 0.
 
-=item missing_as_table
+=item missing_as_table $Boolean
 
 If this option is 1, people with missing birthdates are listed under the timeline, in a table.
 
 If this option is 0, such people appear on the timeline, with a date (today) as their birthdate.
 
-=item output_dir a_dir_name
+Default: 0.
+
+=item output_dir $a_dir_name
 
 If this option is used, the output HTML and XML files will be created in this directory.
 
-=item root_person
+Default: '';
+
+=item root_person $a_personal_name
 
 The name of the person on which to base the timeline.
 
-The default is 'Johann Sebastian Bach'.
+Default: 'Johann Sebastian Bach'.
 
-=item template_dir a_dir_name
+=item template_dir $a_dir_name
 
 If this option is used, HTML::Template will look in this directory for 'timeline.tmpl'.
 
 If this option is not used, the current directory will be used.
 
-=item template_name a_file_name
+Default: ''.
+
+=item template_name $a_file_name
 
 If this option is used, HTML::Template will look for a file of this name.
 
 If this option is not used, 'timeline.tmpl' will be used.
 
-=item url_for_xml a_url
+Default: ''.
+
+=item url_for_xml $a_url
 
 If this option is used, it becomes the prefix of the name of the output XML file written into
 timeline.html.
 
 If this option is not used, no prefix is used.
 
-=item verbose
+Default: ''.
 
-This takes either a 0 or a 1.
+=item validate_gedcom_file $Boolean
+
+If set to 1, call validate() on the Gedcom object. This validates the Gedcom file.
+
+Default: 0.
+
+=item verbose $Boolean
 
 Write more or less progress messages to STDERR.
 
-The default value is 0.
+Default: 0.
 
 =item web_page a_file_name
 
@@ -596,11 +589,13 @@ If this option is not used, 'timeline.html' is written.
 
 See the output_dir option for where the file is written.
 
-=item xml_file
+Default: 'timeline.html'.
+
+=item xml_file $an_xml_file_name
 
 The name of your XML output file.
 
-The default value is 'timeline.xml'.
+Default: 'timeline.xml'.
 
 Note: The name of the XML file is embedded in timeline.html, at line 28.
 You will need to edit the latter file if you use a different name for your XML output file.
@@ -651,6 +646,10 @@ See C<examples/timeline.pl> for an example of how to call C<run()>.
 
 The C<Gedcom> module.
 
+=head1 Running Tests
+
+	perl -I../lib ../bin/timeline.pl -gedcom_file ../examples/bach.ged -output_dir /tmp -template_name ../examples/timeline.tmpl
+
 =head1 Support
 
 Support is via the Gedcom mailing list.
@@ -669,7 +668,7 @@ Philip also supplied the files examples/bach.* and examples/timeline.html.
 
 Ron Savage wrote bin/timeline.pl.
 
-examples/timeline.xml is the output of this program, using the default options.
+examples/timeline.xml is the output of that program, using the default options.
 
 =head1 Repository
 
@@ -687,7 +686,7 @@ Australian copyright (c) 2008, Ron Savage.
 
 	All Programs of mine are 'OSI Certified Open Source Software';
 	you can redistribute them and/or modify them under the terms of
-	The Artistic License, a copy of which is available at:
-	http://www.opensource.org/licenses/index.html
+	The Perl License, a copy of which is available at:
+	http://dev.perl.org/licenses/
 
 =cut
