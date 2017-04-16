@@ -2,6 +2,7 @@
 ,v$
 \B\.cvsignore$
 \B\.git\b
+\B\.gitignore\b
 \B\.svn\b
 \bCVS\b
 \bRCS\b
@@ -12,7 +13,6 @@
 \bpm_to_blib$
 \bMakefile$
 \bMakeMaker-\d
-^MANIFEST\.SKIP$
 
 # Avoid Module::Build generated and utility files.
 \b_build
@@ -36,5 +36,12 @@
 \B\.DS_Store
 #   Mac OSX SMB mount metadata files
 \B\._
+
+# Avoid UltraEdit files.
+\.prj$
+\.pui$
+
 ^MYMETA.yml$
 ^MYMETA\.json$
+
+^HTML-Timeline-.*
