@@ -31,12 +31,13 @@ my(%params) =
 	PREREQ_PM =>
 	{
 		'accessors'			=> 0,
+		'Capture::Tiny'		=> 0.46,
 		'Carp'				=> 0,
-		'Config::IniFiles'	=> 0,
-		'Gedcom'			=> 0,
-		'Gedcom::Date'		=> 0,
-		'HTML::Template'	=> 0,
-		'Path::Class'		=> 0,
+		'Config::IniFiles'	=> 2.94,
+		'Gedcom'			=> 1.20,
+		'Gedcom::Date'		=> 0.10,
+		'HTML::Template'	=> 2.95,
+		'Path::Class'		=> 0.37,
 	},
 	TEST_REQUIRES =>
 	{

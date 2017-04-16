@@ -11,6 +11,9 @@ Revision history for Perl extension HTML::Timeline.
 	- In bin/timeline.pl, document much more clearly what values are taken by each option.
 		Do the same in the pod.
 	- Fix docs for new(). It takes a hash of options, not a hashref.
+	- Add specific versions of pre-reqs in Makefile.PL.
+	- Rewrite t/test.t to run bin/timeline.pl under control of Capture::Tiny, and check its output.
+		This requires Capture::Tiny as a new pre-req.
 
 1.08  Sun Jan 25 14:07:00 2014
 	- Replace /usr/bin/perl with /usr/bin/env perl.
