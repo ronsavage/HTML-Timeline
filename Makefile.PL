@@ -33,7 +33,6 @@ my(%params) =
 		'accessors::classic'	=> 1.01,
 		'Capture::Tiny'			=> 0.46,
 		'Carp'					=> 0,
-		'Config::IniFiles'		=> 2.94,
 		'Gedcom'				=> 1.20,
 		'Gedcom::Date'			=> 0.10,
 		'Getopt::Long'			=> 0,
