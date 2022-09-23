@@ -32,12 +32,12 @@ $class -> new
 	dist_author    => 'Ron Savage <ron@savage.net.au>',
 	build_requires =>
 	{
-		'Test::More' => 0,
-#		'Test::Pod'  => 1.45, # Make it optional. See t/pod.t
+		'Test::More' => 1.001014,
+		'Test::Pod'  => 1.48,
 	},
 	configure_requires =>
 	{
-		'Module::Build' => 0.3800,
+		'Module::Build' => 0.4211,
 	},
 	requires =>
 	{
@@ -51,9 +51,9 @@ $class -> new
 	},
 	resources =>
 	{
-		bugtracker => 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
-		license    => 'http://opensource.org/licenses/Artistic-2.0',
-		repository => 'https://github.com/ronsavage/HTML-Timeline',
+		'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html?Name=HTML-Timeline',
+		'license'    => 'http://opensource.org/licenses/Artistic-2.0',
+		'repository' => 'https://github.com/ronsavage/HTML-Timeline',
 	},
-	script_files => ['bin/timeline.pl'],
+	'script_files' => ['bin/timeline.pl'],
 ) -> create_build_script();
